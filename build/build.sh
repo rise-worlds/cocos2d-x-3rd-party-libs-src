@@ -302,7 +302,7 @@ function generate_android_standalone_toolchain()
         return
     fi
 
-    "$ANDROID_NDK/build/tools/make-standalone-toolchain.sh" \
+    "$THIRDPART_ANDROID_NDK/build/tools/make-standalone-toolchain.sh" \
       --arch="${arch}" \
       --platform="${api_level}" \
       --stl=libc++ \
