@@ -229,7 +229,7 @@ check_macosx_sdk()
 {
    if [ -z "${OSX_VERSION}" ]
    then
-      OSX_VERSION=`xcrun --show-sdk-version`
+      OSX_VERSION=`xcrun -sdk macosx --show-sdk-version`
       echo "OSX_VERSION not specified, assuming $OSX_VERSION"
    fi
    if test -z "$SDKROOT"

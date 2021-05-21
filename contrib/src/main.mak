@@ -127,17 +127,11 @@ ifeq ($(ARCH),x86_64)
 EXTRA_CFLAGS += -m64 $(OPTIM)
 EXTRA_LDFLAGS += -m64
 else
-EXTRA_CFLAGS += -m32 $(OPTIM)
-EXTRA_LDFLAGS += -m32
+EXTRA_CFLAGS += -arch arm64 $(OPTIM)
+EXTRA_LDFLAGS += -arch arm64
 endif
 
 XCODE_FLAGS = -sdk macosx$(OSX_VERSION)
-ifeq ($(shell xcodebuild -version 2>/dev/null | tee /dev/null|head -1|cut -d\  -f2|cut -d. -f1),3)
-XCODE_FLAGS += ARCHS=$(ARCH)
-# XCode 3 doesn't support -arch
-else
-XCODE_FLAGS += -arch $(ARCH)
-endif
 
 endif #end of MacOSX
 
