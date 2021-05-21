@@ -11,6 +11,7 @@ $(TARBALLS)/glfw-$(GLFW_VERSION).tar.gz:
 
 glfw: glfw-$(GLFW_VERSION).tar.gz .sum-glfw
 	$(UNPACK)
+	$(APPLY) $(SRC)/glfw/dont_include_applicationservices.patch
 	$(MOVE)
 
 .glfw: glfw
