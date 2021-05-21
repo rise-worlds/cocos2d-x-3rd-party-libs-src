@@ -1,5 +1,5 @@
 # OPENSSL
-OPENSSL_VERSION := 1.1.0c
+OPENSSL_VERSION := 1.1.0l
 OPENSSL_URL := https://www.openssl.org/source/openssl-$(OPENSSL_VERSION).tar.gz
 
 OPENSSL_EXTRA_CONFIG_1=no-shared no-unit-test
@@ -11,10 +11,15 @@ OPENSSL_CONFIG_VARS=darwin64-x86_64-cc
 OPENSSL_ARCH=-m64
 endif
 
-ifeq ($(MY_TARGET_ARCH),i386)
-OPENSSL_CONFIG_VARS=BSD-generic32
-OPENSSL_ARCH=-m32
+ifeq ($(MY_TARGET_ARCH),arm64)
+OPENSSL_CONFIG_VARS=darwin64-arm64-cc
+
+CUR_MAKEFILE_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+export OPENSSL_LOCAL_CONFIG_DIR=${CUR_MAKEFILE_DIR}/config
+export CROSS_TOP=$(shell xcode-select -print-path)/Platforms/MacOSX.platform/Developer
+export CROSS_SDK=MacOSX.sdk
 endif
+
 endif
 
 ifdef HAVE_LINUX

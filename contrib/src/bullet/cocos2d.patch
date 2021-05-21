@@ -1806,6 +1806,18 @@ index 37c6dec..3d5f0eb 100644
          #ifdef __clang__
              #define BT_USE_NEON 1
  			#define BT_USE_SIMD_VECTOR3
+diff --git a/src/LinearMath/btVector3.h b/src/LinearMath/btVector3.h
+--- a/src/LinearMath/btVector3.h
++++ b/src/LinearMath/btVector3.h
+@@ -39,7 +39,7 @@
+ #endif
+ 
+ 
+-#define BT_SHUFFLE(x,y,z,w) ((w)<<6 | (z)<<4 | (y)<<2 | (x))
++#define BT_SHUFFLE(x,y,z,w) (((w)<<6 | (z)<<4 | (y)<<2 | (x)) & 0xFF)
+ //#define bt_pshufd_ps( _a, _mask ) (__m128) _mm_shuffle_epi32((__m128i)(_a), (_mask) )
+ #define bt_pshufd_ps( _a, _mask ) _mm_shuffle_ps((_a), (_a), (_mask) )
+ #define bt_splat3_ps( _a, _i ) bt_pshufd_ps((_a), BT_SHUFFLE(_i,_i,_i, 3) )
 diff --git a/src/vectormath/sse/vec_aos.h b/src/vectormath/sse/vec_aos.h
 index 35aeeaf..72890bf 100644
 --- a/src/vectormath/sse/vec_aos.h
