@@ -145,9 +145,6 @@ openssl: openssl-$(OPENSSL_VERSION).tar.gz .sum-openssl
 ifdef HAVE_ANDROID
 	$(APPLY) $(SRC)/openssl/android-clang.patch
 endif
-ifdef HAVE_IOS
-	$(APPLY) $(SRC)/openssl/ios-armv7-crash.patch
-endif
 	$(MOVE)
 
 .openssl: openssl
