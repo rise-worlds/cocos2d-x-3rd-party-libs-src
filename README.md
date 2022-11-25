@@ -44,7 +44,7 @@ If you have an old version autoconf installed, you may need uninstall it first, 
 - If you want to build static libraries for iOS and Mac, you should install the latest version of XCode.  You should also install the `Command Line Tools` bundled with XCode.
 
 
-- If you want to build static libraries for Android, you should install [NDK](https://developer.android.com/tools/sdk/ndk/index.html). NDK r16 is required at the moment and you should also specify the ANDROID_NDK environment variable in your shell.
+- If you want to build static libraries for Android, you should install [NDK](https://developer.android.com/tools/sdk/ndk/index.html). NDK r16 is required at the moment and you should also specify the THIRDPART_ANDROID_NDK environment variable in your shell.
 
 - If you want to build static libraries for Tizen, you should download and install [Tizen SDK](https://developer.tizen.org/downloads/tizen-sdk). And you should also add a environment variable named `TIZEN_SDK` in your shell.
 
@@ -155,7 +155,7 @@ cd build
 
 ### Build for Android arm64
 
-1. Download Android NDK r10c+ and set the ANDROID_NDK to point to the Android NDK path. Don't forget to `source ~/.bash_profile`.
+1. Download Android NDK r10c+ and set the THIRDPART_ANDROID_NDK to point to the Android NDK path. Don't forget to `source ~/.bash_profile`.
 
 2. Make sure the `cfg_default_arm64_build_api` is 21+(The default is 21) and `cfg_default_gcc_version` is 4.9 in  android.ini config.
 
@@ -163,7 +163,7 @@ cd build
 
 Note:
 If you build `webp` with arm64, you will get `cpu-features.h` header file not found error. This is a known issue of Android NDK r10c. You could simply create a empty header file
-named `cpu-features.h` under `{ANDROID_NDK}/platforms/android-21/arch-arm64/usr/include`.
+named `cpu-features.h` under `{THIRDPART_ANDROID_NDK}/platforms/android-21/arch-arm64/usr/include`.
 
 ### Enable bitcode for iOS
 On default, when building static libs for TVOS, it will enable bitcode, but iOS doesn't.
