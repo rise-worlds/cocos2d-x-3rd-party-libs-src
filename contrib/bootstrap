@@ -268,7 +268,7 @@ check_android_sdk()
         ANDROID_ABI=$MY_TARGET_ARCH
         
 	[ -z "${THIRDPART_ANDROID_NDK}" ] && echo "You must set THIRDPART_ANDROID_NDK environment variable" && exit 1
-	add_make "THIRDPART_ANDROID_NDK := ${THIRDPART_ANDROID_NDK}"
+	add_make "ANDROID_NDK := ${THIRDPART_ANDROID_NDK}"
 	[ -z "${ANDROID_ABI}" ] && echo "You must set ANDROID_ABI environment variable" && exit 1
 	add_make "ANDROID_ABI := ${ANDROID_ABI}"
 	[ -z "${ANDROID_API}" ] && echo "You should set ANDROID_API environment variable (using default android-9)" && ANDROID_API := android-9

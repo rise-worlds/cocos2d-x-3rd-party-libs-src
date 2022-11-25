@@ -165,6 +165,8 @@ Note:
 If you build `webp` with arm64, you will get `cpu-features.h` header file not found error. This is a known issue of Android NDK r10c. You could simply create a empty header file
 named `cpu-features.h` under `{THIRDPART_ANDROID_NDK}/platforms/android-21/arch-arm64/usr/include`.
 
+python 2 is need for NKD to make standalone toolchain.
+
 ### Enable bitcode for iOS
 On default, when building static libs for TVOS, it will enable bitcode, but iOS doesn't.
 
