@@ -1,0 +1,42 @@
+Common subdirectories: a/aes and b/aes
+diff --color '--color=never' -u a/unzip.c b/unzip.c
+--- a/unzip.c	2024-08-06 05:42:57.000000000 +0000
++++ b/unzip.c	2024-08-06 05:45:05.985305292 +0000
+@@ -31,6 +31,7 @@
+ 
+ #include "zlib.h"
+ #include "unzip.h"
++#include "ioapi_mem.h"
+ 
+ #ifdef STDC
+ #  include <stddef.h>
+@@ -586,6 +587,16 @@
+ {
+     return unzOpenInternal(path, NULL);
+ }
++ 
++extern unzFile ZEXPORT unzOpenBuffer(const  void* buffer, uLong size)
++{
++    char path[48] = {0};
++    ourmemory_t FileMemory;
++    zlib_filefunc64_32_def memory_file;
++    sprintf(path, "%llx %lx", (unsigned long long)buffer, (unsigned long)size);
++    fill_memory_filefunc(&memory_file, &FileMemory);
++    return unzOpenInternal(path, &memory_file);
++}
+ 
+ extern int ZEXPORT unzClose(unzFile file)
+ {
+diff --color '--color=never' -u a/unzip.h b/unzip.h
+--- a/unzip.h	2024-08-06 05:42:57.000000000 +0000
++++ b/unzip.h	2024-08-06 05:45:29.725613864 +0000
+@@ -143,6 +143,9 @@
+    open64_file_func callback. Under Windows, if UNICODE is defined, using fill_fopen64_filefunc, the path 
+    is a pointer to a wide unicode string  (LPCTSTR is LPCWSTR), so const char* does not describe the reality */
+ 
++extern unzFile ZEXPORT unzOpenBuffer OF((const void* buffer, uLong size));
++/* Open a Zip file, like unzOpen, but from a buffer */
++
+ extern unzFile ZEXPORT unzOpen2 OF((const char *path, zlib_filefunc_def* pzlib_filefunc_def));
+ /* Open a Zip file, like unzOpen, but provide a set of file low level API for read/write operations */
+ extern unzFile ZEXPORT unzOpen2_64 OF((const void *path, zlib_filefunc64_def* pzlib_filefunc_def));
