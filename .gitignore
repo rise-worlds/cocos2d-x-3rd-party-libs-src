@@ -32,14 +32,17 @@
 /build/tvos/
 /build/ios/
 /build/mac/
+/build/linux/
 /contrib/android-arm/
 /contrib/android-armv7/
 /contrib/android-x86/
+/contrib/linux-x86_64/
 /contrib/include/
 /contrib/install-android/
 /contrib/install-tvos/
 /contrib/install-ios/
 /contrib/install-mac/
+/contrib/install-linux/
 /contrib/tvos-arm64/
 /contrib/tvos-x86_64/
 /contrib/install-winrt/

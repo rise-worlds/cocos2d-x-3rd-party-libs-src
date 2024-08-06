@@ -1,6 +1,6 @@
 # bullet
 
-BULLET_GITURL := https://github.com/bulletphysics/bullet3
+BULLET_GITURL := git@github.com:bulletphysics/bullet3.git
 
 $(TARBALLS)/libbullet-git.tar.xz:
 	$(call download_git,$(BULLET_GITURL),master,19f999a)

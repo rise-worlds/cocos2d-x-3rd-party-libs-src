@@ -52,22 +52,22 @@ endif
 #
 ifndef HAVE_CROSS_COMPILE
 ifneq ($(findstring $(origin CC),undefined default),)
-CC := gcc
+CC := clang
 endif
 ifneq ($(findstring $(origin CXX),undefined default),)
-CXX := g++
+CXX := clang++
 endif
 ifneq ($(findstring $(origin LD),undefined default),)
-LD := ld
+LD := llvm-ld
 endif
 ifneq ($(findstring $(origin AR),undefined default),)
-AR := ar
+AR := llvm-ar
 endif
 ifneq ($(findstring $(origin RANLIB),undefined default),)
-RANLIB := ranlib
+RANLIB := llvm-ranlib
 endif
 ifneq ($(findstring $(origin STRIP),undefined default),)
-STRIP := strip
+STRIP := llvm-strip
 endif
 else
 ifneq ($(findstring $(origin CC),undefined default),)
@@ -139,7 +139,10 @@ endif #end of MacOSX
 ifndef HAVE_CROSS_COMPILE
 
 ifdef HAVE_LINUX
-
+CC :=  clang
+CXX := clang++
+# EXTRA_CFLAGS += -stdlib=libc++
+# EXTRA_LDFLAGS += -lc++ -lc++abi
 ifeq ($(ARCH),x86_64)
 EXTRA_CFLAGS += -m64 $(OPTIM)
 EXTRA_LDFLAGS += -m64
